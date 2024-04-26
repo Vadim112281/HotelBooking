@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+MNEeeo7J8b9W1Plkpwn/w5EJFmoruUkmMcKN3VwM7ci3ihuD8o2nIlz/AOdHLnhjAEJH+C2Y3cnVRyO0BEcLQ==",
+  "dgSpecHash": "bcPM6OYp1sDaVqOMKYaW0Wb2dv3V+zGQMrlUbTEUNVUVo2ZcfS7yemrsgjHNyvLpk6lFtL6eg0lqAJvZ/0hPjA==",
   "success": true,
-  "projectFilePath": "D:\\MyProjectsGITHUB\\BookHotel\\BookingHotel\\BookingHotel\\BookingHotel.csproj",
+  "projectFilePath": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\BookingHotel.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\matok\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\matok\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

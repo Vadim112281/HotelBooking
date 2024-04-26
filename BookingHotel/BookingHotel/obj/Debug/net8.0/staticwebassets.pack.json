@@ -1,0 +1,73 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BookingHotel.bundle.scp.css",
+      "PackagePath": "staticwebassets\\BookingHotel.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\about.html",
+      "PackagePath": "staticwebassets\\about.html"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\booking.html",
+      "PackagePath": "staticwebassets\\booking.html"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\contact.html",
+      "PackagePath": "staticwebassets\\contact.html"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\room.html",
+      "PackagePath": "staticwebassets\\room.html"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\service.html",
+      "PackagePath": "staticwebassets\\service.html"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\team.html",
+      "PackagePath": "staticwebassets\\team.html"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\testimonial.html",
+      "PackagePath": "staticwebassets\\testimonial.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BookingHotel.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BookingHotel.props",
+      "PackagePath": "build\\BookingHotel.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BookingHotel.props",
+      "PackagePath": "buildMultiTargeting\\BookingHotel.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BookingHotel.props",
+      "PackagePath": "buildTransitive\\BookingHotel.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

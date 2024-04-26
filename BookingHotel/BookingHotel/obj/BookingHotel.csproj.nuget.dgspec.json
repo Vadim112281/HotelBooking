@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\MyProjectsGITHUB\\BookHotel\\BookingHotel\\BookingHotel\\BookingHotel.csproj": {}
+    "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\BookingHotel.csproj": {}
   },
   "projects": {
-    "D:\\MyProjectsGITHUB\\BookHotel\\BookingHotel\\BookingHotel\\BookingHotel.csproj": {
+    "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\BookingHotel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MyProjectsGITHUB\\BookHotel\\BookingHotel\\BookingHotel\\BookingHotel.csproj",
+        "projectUniqueName": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\BookingHotel.csproj",
         "projectName": "BookingHotel",
-        "projectPath": "D:\\MyProjectsGITHUB\\BookHotel\\BookingHotel\\BookingHotel\\BookingHotel.csproj",
+        "projectPath": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\BookingHotel.csproj",
         "packagesPath": "C:\\Users\\matok\\.nuget\\packages\\",
-        "outputPath": "D:\\MyProjectsGITHUB\\BookHotel\\BookingHotel\\BookingHotel\\obj\\",
+        "outputPath": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\matok\\AppData\\Roaming\\NuGet\\NuGet.Config",
