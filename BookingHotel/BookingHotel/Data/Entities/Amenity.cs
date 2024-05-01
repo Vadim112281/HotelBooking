@@ -3,19 +3,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BookingHotel.Data.Entities
 {
-    public class Room
+    public class Amenity
     {
         [Key]
         public int Id { get; set; }
 
-        public int RoomTypeId { get; set; }
 
         [Required, MaxLength(25), Unicode(false)]
-        public string RoomNumber { get; set; }
+        public string Name { get; set; }
 
-        public bool IsAvailable { get; set; }
-
-        public virtual RoomType RoomType { get; set; }
+        [Required, MaxLength(25), Unicode(false)]
+        public string Icon { get; set; }
     }
 
 }

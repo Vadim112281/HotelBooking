@@ -19,6 +19,12 @@ namespace BookingHotel.Data
         [Required, MaxLength(15), RegularExpression(@"[^0-9\+\(\)\s]")]
         public string ContactNumber { get; set; }
 
+        [MaxLength(50), Unicode(false)]
+        public string? Designation { get; set; }
+
+        [MaxLength(100), Unicode(false)]
+        public string? Image { get; set; }
+
     }
 
 }
