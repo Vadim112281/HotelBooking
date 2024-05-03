@@ -1,6 +1,7 @@
 using BookingHotel.Components;
 using BookingHotel.Components.Account;
 using BookingHotel.Data;
+using BookingHotel.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -27,14 +28,19 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContextFactory<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddSignInManager()
     .AddDefaultTokenProviders();
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 
+builder.Services.AddTransient<SeedService>();
+
 var app = builder.Build();
+
+await InitializedAdminUser(app.Services);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -60,3 +66,10 @@ app.MapRazorComponents<App>()
 app.MapAdditionalIdentityEndpoints();
 
 app.Run();
+
+async Task InitializedAdminUser(IServiceProvider serviceProvider)
+{
+    using var scope = serviceProvider.CreateScope();
+    var seedService = scope.ServiceProvider.GetRequiredService<SeedService>();
+    await seedService.SeedDatabaseAsync();
+}
