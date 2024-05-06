@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookingHotel.Data
 {
@@ -24,6 +25,9 @@ namespace BookingHotel.Data
 
         [MaxLength(100), Unicode(false)]
         public string? Image { get; set; }
+
+        [NotMapped]
+        public string FullName => $"{FirstName} {LastName}".Trim();
 
     }
 
