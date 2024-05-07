@@ -1,4 +1,8 @@
-﻿        <!-- Header Start -->
+﻿@implements IDisposable
+
+@inject NavigationManager NavigationManager
+
+        <!-- Header Start -->
 <div class="container-fluid bg-dark px-0">
     <div class="row gx-0">
         <div class="col-lg-3 bg-dark d-none d-lg-block">
@@ -50,8 +54,27 @@
                             </div>
                         </div>
                         <NavLink href="contact" class="nav-item nav-link">Contact</NavLink>
+                        <AuthorizeView>
+                            <Authorized>
+                                <NavLink href="contact" class="nav-item nav-link">@context.User.FindFirst(AppConstants.CustomClaimTypes.FullName).Value</NavLink>
+                            </Authorized>
+                        </AuthorizeView>
+
                     </div>
-                    <a href="https://htmlcodex.com/hotel-html-template-pro" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Premium Version<i class="fa fa-arrow-right ms-3"></i></a>
+                    <AuthorizeView>
+                        <Authorized>
+                                <form action="Account/Logout" method="post">
+                                    <AntiforgeryToken />
+                                    <input type="hidden" name="ReturnUrl" value="@currentUrl" />
+                                    <button type="submit" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">
+                                        Logout<i class="fa fa-arrow-right ms-3"></i>
+                                    </button>
+                                </form>
+                        </Authorized>
+                        <NotAuthorized>
+                            <a href="Account/Login" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+                        </NotAuthorized>
+                    </AuthorizeView>
                 </div>
             </nav>
         </div>
@@ -60,5 +83,22 @@
 <!-- Header End -->
 
 @code {
+    private string? currentUrl;
 
+    protected override void OnInitialized()
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
 }

@@ -91,34 +91,18 @@
             errorMessage = "Error: Incorect pasword.";
             return;
         }
-        Claim[] additionalClaims = [new Claim(nameof(ApplicationUser.FullName), user.FullName)];
+        Claim[] additionalClaims = [
+            new Claim(AppConstants.CustomClaimTypes.FullName, user.FullName),
+            new Claim(AppConstants.CustomClaimTypes.RoleName, user.RoleName),
+            new Claim(AppConstants.CustomClaimTypes.Image, user.Image ?? ""),
+            new Claim(AppConstants.CustomClaimTypes.Email, user.Email ?? user.UserName!),
+            new Claim(AppConstants.CustomClaimTypes.Designation, user.Designation ?? "")
+        ];
 
-        SignInManager.SignInWithClaimsAsync();
+        await SignInManager.SignInWithClaimsAsync(user, Input.RememberMe, additionalClaims);
 
-
-        // This doesn't count login failures towards account lockout
-        // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-        var result = await SignInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-        if (result.Succeeded)
-        {
-            Logger.LogInformation("User logged in.");
-            RedirectManager.RedirectTo(ReturnUrl);
-        }
-        else if (result.RequiresTwoFactor)
-        {
-            RedirectManager.RedirectTo(
-                "Account/LoginWith2fa",
-                new() { ["returnUrl"] = ReturnUrl, ["rememberMe"] = Input.RememberMe });
-        }
-        else if (result.IsLockedOut)
-        {
-            Logger.LogWarning("User account locked out.");
-            RedirectManager.RedirectTo("Account/Lockout");
-        }
-        else
-        {
-            errorMessage = "Error: Invalid login attempt.";
-        }
+        Logger.LogInformation("User logged in.");
+        RedirectManager.RedirectTo(ReturnUrl);
     }
 
     private sealed class InputModel
