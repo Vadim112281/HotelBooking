@@ -56,7 +56,7 @@
                         <NavLink href="contact" class="nav-item nav-link">Contact</NavLink>
                         <AuthorizeView>
                             <Authorized>
-                                <NavLink href="contact" class="nav-item nav-link">@context.User.FindFirst(AppConstants.CustomClaimTypes.FullName).Value</NavLink>
+                                <NavLink href="contact" class="nav-item nav-link">@context.User.FindFirst(AppConstants.CustomClaimTypes.FullName)!.Value</NavLink>
                             </Authorized>
                         </AuthorizeView>
 
@@ -72,7 +72,7 @@
                                 </form>
                         </Authorized>
                         <NotAuthorized>
-                            <a href="Account/Login" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+                            <a href="Account/Login" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Login<i class="fa fa-arrow-left ms-3"></i></a>
                         </NotAuthorized>
                     </AuthorizeView>
                 </div>
