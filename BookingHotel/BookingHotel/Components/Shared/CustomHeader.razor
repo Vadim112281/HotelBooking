@@ -54,9 +54,31 @@
                             </div>
                         </div>
                         <NavLink href="contact" class="nav-item nav-link">Contact</NavLink>
+
                         <AuthorizeView>
                             <Authorized>
-                                <NavLink href="contact" class="nav-item nav-link">@context.User.FindFirst(AppConstants.CustomClaimTypes.FullName)!.Value</NavLink>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">@context.User.FindFirst(AppConstants.CustomClaimTypes.FullName)!.Value</a>
+                                    <div class="dropdown-menu rounded-0 m-0">
+
+                                        <NavLink href="booking" class="dropdown-item">My Profile</NavLink>
+
+                                        <AuthorizeView Roles="@RoleType.Guest.ToString()" Context="guestContext">
+                                            <NavLink href="booking" class="dropdown-item">My Booking</NavLink>
+                                        </AuthorizeView>
+
+                                        <AuthorizeView Roles="Admin" Context="adminContext">
+                                            <NavLink href="booking" class="dropdown-item">Manage Staff</NavLink>
+                                        </AuthorizeView>
+
+                                        <AuthorizeView Roles="Staff, Admin" Context="astffAdminContext">
+                                            <NavLink href="booking" class="dropdown-item">Manage Bookings</NavLink>
+                                            <NavLink href="booking" class="dropdown-item">Manage Rooms</NavLink>
+                                            <NavLink href="booking" class="dropdown-item">Manage Amenities</NavLink>
+                                        </AuthorizeView>
+                                    </div>
+                                </div>
+                                <NavLink href="contact" class="nav-item nav-link"></NavLink>
                             </Authorized>
                         </AuthorizeView>
 
