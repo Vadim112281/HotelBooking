@@ -4,7 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookingHotel.Services
 {
-    public class AmenitiesService
+    public interface IAmenitiesService
+    {
+        Task<List<Amenity>> GetAmenitiesAsync();
+        Task<Amenity> SaveAmenityAsync(Amenity amenity);
+    }
+
+    public class AmenitiesService : IAmenitiesService
     {
         private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
 
@@ -22,7 +28,7 @@ namespace BookingHotel.Services
         public async Task<Amenity> SaveAmenityAsync(Amenity amenity)
         {
             using var context = _contextFactory.CreateDbContext();
-            if(amenity.Id == 0)
+            if (amenity.Id == 0)
             {
                 // Create new Amenity
                 await context.Amenities.AddAsync(amenity);
@@ -30,7 +36,20 @@ namespace BookingHotel.Services
             else
             {
                 // Update existing Amenity
+                var dbEmenity = await context.Amenities
+                                        .AsTracking()
+                                        .FirstOrDefaultAsync(x => x.Id == amenity.Id);
+
+                if (dbEmenity is null)
+                {
+                    throw new InvalidOperationException("Amenity does not exist");
+                }
+
+                dbEmenity.Name = amenity.Name;
+                dbEmenity.Icon = amenity.Icon;
             }
+            await context.SaveChangesAsync();
+            return amenity;
         }
     }
 
