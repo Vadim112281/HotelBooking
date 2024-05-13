@@ -4,50 +4,74 @@
 @attribute [Authorize(Roles = "Staff, Admin")]
 
 @inject IAmenitiesService AmenitiesService
+@inject NavigationManager NavigationManager
 
-<h1>Manage Amenities</h1>
+<div class="container">
+    <h1>Manage Amenities</h1>
+    <hr />
 
-<EditForm Model="Model" Enhance FormName="amenity">
-    <DataAnnotationsValidator />
-     <div class="mb-3">
-         <label class="form-label">Name: </label>
-         <InputText @bind-Value="Model.Name" class="form-control" placeholder="Amenity name" />
-         <ValidationMessage For="() => Model.Name" class="text-danger" />
-     </div>
+    <div class="row">
+         <div class="col-sm-3">
+            <EditForm Model="Model" Enhance FormName="amenity" OnValidSubmit="SaveAmenityAsync">
+                 <DataAnnotationsValidator />
+                 <div class="mb-3">
+                     <label class="form-label">Name: </label>
+                     <InputText @bind-Value="Model.Name" class="form-control" placeholder="Amenity name" />
+                     <ValidationMessage For="() => Model.Name" class="text-danger" />
+                 </div>
 
-     <div class="mb-3">
-         <label class="form-label">Icon: </label>
-         <InputText @bind-Value="Model.Icon" class="form-control" placeholder="Amenity icon" />
-         <ValidationMessage For="() => Model.Icon" class="text-danger" />
-     </div>
+                 <div class="mb-3">
+                     <label class="form-label">Icon: </label>
+                     <InputText @bind-Value="Model.Icon" class="form-control" placeholder="Amenity icon" />
+                     <ValidationMessage For="() => Model.Icon" class="text-danger" />
+                 </div>
 
-     <div class="mb-3">
-         <button type="submit" class="btn btn-sm btn-success">Save</button>
-     </div>
-</EditForm>
+                 <div class="mb-3">
+                     <button type="submit" class="btn btn-sm btn-success">Save</button>
+                 </div>
+             </EditForm>
+         </div>
+         
+         <div class="col-sm-9">
+             <table class="table">
+                 <thead>
+                     <tr>
+                         <th>Id</th>
+                         <th>Name</th>
+                         <th>Icon</th>
+                         <th></th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     @if(_amenities.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="4">
+                                <h4 class="text-danger">No amenities yet. Create one from the left form</h4>
+                            </td>
+                        </tr>
+                    }
+                    @foreach (var item in _amenities)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>
+                                <span>@item.Icon</span>
+                                <i class="@item.Icon text-primary" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+         </div>
+    </div>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Icon</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var item in _amenities)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.Icon</td>
-            </tr>
-        }
-    </tbody>
-</table>
+
 
 @code {
+    [SupplyParameterFromForm]
     private Amenity Model { get; set; } = new();
 
     private List<Amenity>  _amenities = new List<Amenity>();
@@ -55,5 +79,12 @@
     protected override async Task OnInitializedAsync()
     {
         _amenities = await AmenitiesService.GetAmenitiesAsync();
+    }
+
+    private async Task SaveAmenityAsync()
+    {
+        var savedAmenity = await AmenitiesService.SaveAmenityAsync(Model);
+        NavigationManager.Refresh();
+        _amenities = [savedAmenity, .. _amenities];
     }
 }
