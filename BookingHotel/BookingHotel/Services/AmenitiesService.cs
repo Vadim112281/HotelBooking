@@ -1,5 +1,6 @@
 ﻿using BookingHotel.Data;
 using BookingHotel.Data.Entities;
+using BookingHotel.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookingHotel.Services
@@ -7,49 +8,87 @@ namespace BookingHotel.Services
     public interface IAmenitiesService
     {
         Task<List<Amenity>> GetAmenitiesAsync();
-        Task<Amenity> SaveAmenityAsync(Amenity amenity);
+        Task<Amenity?> AddAmenityAsync(Amenity amenity);
+        Task<Amenity?> UpdateAmenityAsync(Amenity amenity, int id);
+        Task<Amenity?> GetAmenitySingleAsync(int id);
+        Task<bool> DeleteAmenityAsync(int id);
     }
 
     public class AmenitiesService : IAmenitiesService
     {
-        private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
+        private readonly ApplicationDbContext _context;
 
-        public AmenitiesService(IDbContextFactory<ApplicationDbContext> contextFactory)
+        public AmenitiesService(ApplicationDbContext context)
         {
-            _contextFactory = contextFactory;
+            _context = context;
         }
 
         public async Task<List<Amenity>> GetAmenitiesAsync()
         {
-            using var context = _contextFactory.CreateDbContext();
-            return await context.Amenities.ToListAsync();
+            var amenities = await  _context.Amenities.Where(x => !x.IsDeleted).ToListAsync();
+
+            return amenities;   
         }
 
-        public async Task<Amenity> SaveAmenityAsync(Amenity amenity)
+        public async Task<Amenity?> AddAmenityAsync(Amenity amenity)
         {
-            using var context = _contextFactory.CreateDbContext();
-            if (amenity.Id == 0)
+            // Checking on existing amenity
+            var existingAmenity = await _context.Amenities.FirstOrDefaultAsync(x => x.Name == amenity.Name);
+
+            if(existingAmenity is not null)
             {
-                // Create new Amenity
-                await context.Amenities.AddAsync(amenity);
+                return null;
             }
             else
             {
-                // Update existing Amenity
-                var dbEmenity = await context.Amenities
-                                        .AsTracking()
-                                        .FirstOrDefaultAsync(x => x.Id == amenity.Id);
+                await _context.Amenities.AddAsync(amenity);
+                await _context.SaveChangesAsync();
 
-                if (dbEmenity is null)
-                {
-                    throw new InvalidOperationException("Amenity does not exist");
-                }
-
-                dbEmenity.Name = amenity.Name;
-                dbEmenity.Icon = amenity.Icon;
+                return amenity;
             }
-            await context.SaveChangesAsync();
+        }
+
+        public async Task<Amenity?> UpdateAmenityAsync(Amenity amenity, int id)
+        {
+            var existingAmenity = await _context.Amenities.FirstOrDefaultAsync(x => x.Id == id);
+
+            if(existingAmenity == null)
+            {
+                return null;
+            }
+            else
+            {
+                existingAmenity.Name = amenity.Name;
+                existingAmenity.Icon = amenity.Icon;
+
+                _context.Amenities.Update(existingAmenity);
+                await _context.SaveChangesAsync();
+
+                return amenity;
+            }
+        }
+
+        public async Task<Amenity?> GetAmenitySingleAsync(int id)
+        {
+            var amenity = await _context.Amenities.FirstOrDefaultAsync(x => x.Id == id);
+
+            if(amenity is null)
+            {
+                return null;
+            }
+
             return amenity;
+        }
+
+        public async Task<bool> DeleteAmenityAsync(int id)
+        {
+            var amenityForDeleting = await  _context.Amenities.AsTracking().FirstOrDefaultAsync(x => x.Id == id);
+            if(amenityForDeleting is not null)
+            {
+                amenityForDeleting.IsDeleted = true;
+                await _context.SaveChangesAsync();
+            }
+            return true;
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using BookingHotel.Constants;
 using BookingHotel.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace BookingHotel.Services
@@ -11,8 +12,10 @@ namespace BookingHotel.Services
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
+        private readonly IDbContextFactory<ApplicationDbContext> _contextFatory;
         public SeedService(UserManager<ApplicationUser> userManager, IUserStore<ApplicationUser> userStore, 
-            RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+            RoleManager<IdentityRole> roleManager, IConfiguration configuration,
+            IDbContextFactory<ApplicationDbContext> contextFactory)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -22,7 +25,15 @@ namespace BookingHotel.Services
 
         public async Task SeedDatabaseAsync()
         {
-            var adminUserEmail = _configuration.GetValue<string>("AdminUser:Email");
+            using (var context = _contextFatory.CreateDbContext())
+            {
+                if(context.Database.GetPendingMigrations().Any())
+                {
+                    context.Database.Migrate();
+                }
+            }
+
+                var adminUserEmail = _configuration.GetValue<string>("AdminUser:Email");
 
             var dbAdminUser = await _userManager.FindByEmailAsync(adminUserEmail!);
             if(dbAdminUser is not null)

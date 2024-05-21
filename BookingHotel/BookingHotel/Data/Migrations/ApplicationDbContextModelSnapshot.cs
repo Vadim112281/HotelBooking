@@ -131,6 +131,9 @@ namespace BookingHotel.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(25)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(25)

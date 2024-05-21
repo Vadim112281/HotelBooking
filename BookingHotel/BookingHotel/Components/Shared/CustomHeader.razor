@@ -58,7 +58,7 @@
                         <AuthorizeView>
                             <Authorized>
                                 <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">@context.User.FindFirst(AppConstants.CustomClaimTypes.FullName)!.Value</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">@* @context.User.FindFirst(AppConstants.CustomClaimTypes.FullName)!.Value *@ Profile</a>
                                     <div class="dropdown-menu rounded-0 m-0">
 
                                         <NavLink href="booking" class="dropdown-item">My Profile</NavLink>

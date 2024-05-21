@@ -2,6 +2,9 @@
 
 
 @attribute [Authorize(Roles = "Staff, Admin")]
+@attribute [StreamRendering]
+
+@rendermode InteractiveServer
 
 @inject IAmenitiesService AmenitiesService
 @inject NavigationManager NavigationManager
@@ -12,8 +15,14 @@
 
     <div class="row">
          <div class="col-sm-3">
-            <EditForm Model="Model" Enhance FormName="amenity" OnValidSubmit="SaveAmenityAsync">
+            <EditForm Model="Model" Enhance FormName="amenity" OnValidSubmit="AmenityActionsAsync" >
                  <DataAnnotationsValidator />
+                 @if(!string.IsNullOrWhiteSpace(_error))
+                {
+                    <div class="mb-3 text-danger">
+                        <small>@_error</small>
+                    </div>
+                } 
                  <div class="mb-3">
                      <label class="form-label">Name: </label>
                      <InputText @bind-Value="Model.Name" class="form-control" placeholder="Amenity name" />
@@ -27,43 +36,63 @@
                  </div>
 
                  <div class="mb-3">
-                     <button type="submit" class="btn btn-sm btn-success">Save</button>
+@*                      <button type="submit" class="btn btn-sm btn-success"  disabled="@_isSaving" >
+                        @if(_isSaving)
+                        {
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                            <span role="status">Loading...</span>
+                        } 
+                         else
+                        { 
+                            <span>Save</span>
+                         } 
+                    </button> *@
+
+                    <button type="submit" class="btn btn-sm btn-success">Save</button>
                  </div>
-             </EditForm>
+            </EditForm>
          </div>
          
          <div class="col-sm-9">
-             <table class="table">
-                 <thead>
-                     <tr>
-                         <th>Id</th>
-                         <th>Name</th>
-                         <th>Icon</th>
-                         <th></th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     @if(_amenities.Count == 0)
-                    {
+            <div class="" style="max-height: 75vh; overflow-y: scroll;">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td colspan="4">
-                                <h4 class="text-danger">No amenities yet. Create one from the left form</h4>
-                            </td>
+                            <th>Id</th>
+                            <th>Icon</th>
+                            <th>Name</th>
+                            <th>Icon Css Class</th>
+                            <th></th>
                         </tr>
-                    }
-                    @foreach (var item in _amenities)
-                    {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Name</td>
-                            <td>
-                                <span>@item.Icon</span>
-                                <i class="@item.Icon text-primary" />
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @if (_amenities.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="4">
+                                    <h4 class="text-danger">No amenities yet. Create one from the left form</h4>
+                                </td>
+                            </tr>
+                        }
+                        @foreach (var item in _amenities)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>
+                                    <i class="@item.Icon text-primary" />
+                                </td>
+                                <td>@item.Name</td>
+                                <td>@item.Icon</td>
+                                <td>
+                                    <EditForm Model="Model" OnValidSubmit="() => AmenityPreUpdate(item.Id)">
+                                        <button class="btn btn-sm btn-primary">Edit</button>
+                                    </EditForm>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
          </div>
     </div>
 </div>
@@ -74,17 +103,72 @@
     [SupplyParameterFromForm]
     private Amenity Model { get; set; } = new();
 
-    private List<Amenity>  _amenities = new List<Amenity>();
+    [SupplyParameterFromQuery(Name = "id")]
+    private int AmenityId { get; set; }
 
+    private bool _isSaving;
+    private string? _error;
+
+    private List<Amenity>  _amenities = new List<Amenity>();
     protected override async Task OnInitializedAsync()
     {
         _amenities = await AmenitiesService.GetAmenitiesAsync();
+        if(Model.Id > 0)
+        {
+            var amenity = _amenities.FirstOrDefault(x => x.Id == Model.Id);
+            if(amenity is not null)
+            {
+                Model = amenity;
+            }
+        }
     }
 
-    private async Task SaveAmenityAsync()
+    private void EditAmenity(Amenity amenity) => Model = amenity;
+
+    private async Task AmenityActionsAsync()
     {
-        var savedAmenity = await AmenitiesService.SaveAmenityAsync(Model);
-        NavigationManager.Refresh();
-        _amenities = [savedAmenity, .. _amenities];
+        // var amenity = await AmenitiesService.AddAmenityAsync(Model);
+        if(Model is null)
+        {
+            _error = "Error";
+        }
+        else if(Model.Id > 0)
+        {
+            await AmenitiesService.UpdateAmenityAsync(Model, Model.Id);
+
+            var amenity = _amenities.First(x => x.Id == Model.Id);
+            amenity.Name = Model.Name;
+            amenity.Icon = Model.Icon;
+            Model = new();
+        }
+        else
+        {
+            var amenity = await AmenitiesService.AddAmenityAsync(Model);
+            Model = new();
+            _amenities = [.. _amenities, Model];
+        }
     }
+
+    private async Task AmenityPreUpdate(int id)
+    {
+        Model = await AmenitiesService.GetAmenitySingleAsync(id);
+    }
+
+    // private async Task SaveAmenityAsync()
+    // {
+    //     _isSaving = true;
+    //     await Task.Delay(500);
+    //     var amenity = await AmenitiesService.SaveAmenityAsync(Model);
+    //     if(amenity.Name == null)
+    //     {
+    //         _error = "Amenity with the same name already exists!";
+    //         _isSaving = false;
+    //     }
+    //     else
+    //     {
+    //         Model = new();
+    //         _amenities = [.. _amenities, amenity];
+    //         _isSaving = false;
+    //     }
+    // }
 }
