@@ -25,13 +25,7 @@ namespace BookingHotel.Services
 
         public async Task SeedDatabaseAsync()
         {
-            using (var context = _contextFatory.CreateDbContext())
-            {
-                if(context.Database.GetPendingMigrations().Any())
-                {
-                    context.Database.Migrate();
-                }
-            }
+
 
                 var adminUserEmail = _configuration.GetValue<string>("AdminUser:Email");
 

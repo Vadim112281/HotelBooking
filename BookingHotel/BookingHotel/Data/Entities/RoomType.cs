@@ -8,7 +8,7 @@ namespace BookingHotel.Data.Entities
     {
         public int Id { get; set; }
 
-        [Required, MaxLength(50)]
+        [Required, MaxLength(100), Unicode(false)]
         public string Name { get; set; }
 
         [Required, MaxLength(100), Unicode(false)]

@@ -15,7 +15,6 @@ namespace BookingHotel.Data.Entities
         [Required, MaxLength(25), Unicode(false)]
         public string Icon { get; set; }
 
-        public bool IsDeleted { get; set; }
     }
 
 }

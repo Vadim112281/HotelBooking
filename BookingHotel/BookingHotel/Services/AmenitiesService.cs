@@ -9,8 +9,7 @@ namespace BookingHotel.Services
     {
         Task<List<Amenity>> GetAmenitiesAsync();
         Task<Amenity?> AddAmenityAsync(Amenity amenity);
-        Task<Amenity?> UpdateAmenityAsync(Amenity amenity, int id);
-        Task<Amenity?> GetAmenitySingleAsync(int id);
+        Task UpdateAmenityAsync(Amenity amenity, int id);
         Task<bool> DeleteAmenityAsync(int id);
     }
 
@@ -25,7 +24,7 @@ namespace BookingHotel.Services
 
         public async Task<List<Amenity>> GetAmenitiesAsync()
         {
-            var amenities = await  _context.Amenities.Where(x => !x.IsDeleted).ToListAsync();
+            var amenities = await  _context.Amenities.ToListAsync();
 
             return amenities;   
         }
@@ -48,54 +47,34 @@ namespace BookingHotel.Services
             }
         }
 
-        public async Task<Amenity?> UpdateAmenityAsync(Amenity amenity, int id)
+        public async Task UpdateAmenityAsync(Amenity amenity, int id)
         {
-            var existingAmenity = await _context.Amenities.FirstOrDefaultAsync(x => x.Id == id);
-
-            if(existingAmenity == null)
+            var existingAmenity = await _context.Amenities.FirstOrDefaultAsync(a => a.Id == id);
+            if (existingAmenity == null)
             {
-                return null;
+                throw new InvalidOperationException("Amenity not found");
             }
-            else
-            {
-                existingAmenity.Name = amenity.Name;
-                existingAmenity.Icon = amenity.Icon;
 
-                _context.Amenities.Update(existingAmenity);
-                await _context.SaveChangesAsync();
+            existingAmenity.Name = amenity.Name;
+            existingAmenity.Icon = amenity.Icon;
 
-                return amenity;
-            }
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<Amenity?> GetAmenitySingleAsync(int id)
-        {
-            var amenity = await _context.Amenities.FirstOrDefaultAsync(x => x.Id == id);
-
-            if(amenity is null)
-            {
-                return null;
-            }
-
-            return amenity;
-        }
 
         public async Task<bool> DeleteAmenityAsync(int id)
         {
-            var amenityForDeleting = await  _context.Amenities.AsTracking().FirstOrDefaultAsync(x => x.Id == id);
-            if(amenityForDeleting is not null)
+            var amenityToDelete = await _context.Amenities.FindAsync(id);
+
+            if(amenityToDelete is not null)
             {
-                amenityForDeleting.IsDeleted = true;
-                await _context.SaveChangesAsync();
+                 _context.Amenities.Remove(amenityToDelete);
+                 await _context.SaveChangesAsync();
+
+                return true;
             }
-            return true;
+
+            return false;
         }
     }
-
-    public class RoomService
-    {
-
-    }
-
-
 }

@@ -2,7 +2,7 @@
 
 
 @attribute [Authorize(Roles = "Staff, Admin")]
-@attribute [StreamRendering]
+@* @attribute [StreamRendering] *@
 
 @rendermode InteractiveServer
 
@@ -84,9 +84,15 @@
                                 <td>@item.Name</td>
                                 <td>@item.Icon</td>
                                 <td>
-                                    <EditForm Model="Model" OnValidSubmit="() => AmenityPreUpdate(item.Id)">
-                                        <button class="btn btn-sm btn-primary">Edit</button>
-                                    </EditForm>
+                                    <div class="buttons" style="display:flex;">
+                                        
+                                        <EditForm Model="Model" OnValidSubmit="() => AmenityPreUpdate(item.Id)">
+                                            <button class="btn btn-sm btn-primary">Edit</button>
+                                        </EditForm>
+                                        <EditForm Model="Model" OnValidSubmit="() => AmenityDelete(item.Id)">
+                                            <button class="btn btn-sm btn-danger" style="margin-left:10px;">Delete</button>
+                                        </EditForm>
+                                    </div>
                                 </td>
                             </tr>
                         }
@@ -113,62 +119,66 @@
     protected override async Task OnInitializedAsync()
     {
         _amenities = await AmenitiesService.GetAmenitiesAsync();
-        if(Model.Id > 0)
-        {
-            var amenity = _amenities.FirstOrDefault(x => x.Id == Model.Id);
-            if(amenity is not null)
-            {
-                Model = amenity;
-            }
-        }
+        // if(Model.Id > 0)
+        // {
+        //     var amenity = _amenities.FirstOrDefault(x => x.Id == Model.Id);
+        //     if(amenity is not null)
+        //     {
+        //         Model = amenity;
+        //     }
+        // }
     }
 
     private void EditAmenity(Amenity amenity) => Model = amenity;
 
     private async Task AmenityActionsAsync()
     {
-        // var amenity = await AmenitiesService.AddAmenityAsync(Model);
-        if(Model is null)
+        if (Model is null)
         {
-            _error = "Error";
+            _error = "Помилка";
+            return;
         }
-        else if(Model.Id > 0)
+
+        if (Model.Id > 0)
         {
             await AmenitiesService.UpdateAmenityAsync(Model, Model.Id);
 
-            var amenity = _amenities.First(x => x.Id == Model.Id);
-            amenity.Name = Model.Name;
-            amenity.Icon = Model.Icon;
-            Model = new();
+            var amenityUpdated = _amenities.FirstOrDefault(x => x.Id == Model.Id);
+
+            amenityUpdated.Name = Model.Name;
+            amenityUpdated.Icon = Model.Icon;
+
+            Model = new Amenity();
         }
         else
         {
             var amenity = await AmenitiesService.AddAmenityAsync(Model);
             Model = new();
-            _amenities = [.. _amenities, Model];
+            _amenities = [.. _amenities, amenity];
+
+            Model = new Amenity();
+
         }
     }
 
     private async Task AmenityPreUpdate(int id)
     {
-        Model = await AmenitiesService.GetAmenitySingleAsync(id);
+        var amenityToUpdate = _amenities.FirstOrDefault(x => x.Id == id);
+        if(amenityToUpdate is not null)
+        {
+            Model.Id = amenityToUpdate.Id;
+            Model.Name = amenityToUpdate.Name;
+            Model.Icon = amenityToUpdate.Icon;
+        }
     }
 
-    // private async Task SaveAmenityAsync()
-    // {
-    //     _isSaving = true;
-    //     await Task.Delay(500);
-    //     var amenity = await AmenitiesService.SaveAmenityAsync(Model);
-    //     if(amenity.Name == null)
-    //     {
-    //         _error = "Amenity with the same name already exists!";
-    //         _isSaving = false;
-    //     }
-    //     else
-    //     {
-    //         Model = new();
-    //         _amenities = [.. _amenities, amenity];
-    //         _isSaving = false;
-    //     }
-    // }
+    private async Task AmenityDelete(int id)
+    {
+        await AmenitiesService.DeleteAmenityAsync(id);
+
+        var amenityToDelete = _amenities.FirstOrDefault(x => x.Id == id);
+
+        _amenities.Remove(amenityToDelete);
+    }
+
 }

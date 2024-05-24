@@ -39,6 +39,9 @@ builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSe
 builder.Services.AddTransient<SeedService>();
 builder.Services.AddTransient<IAmenitiesService, AmenitiesService>();
 
+builder.Services.AddServerSideBlazor()
+       .AddCircuitOptions(options => options.DetailedErrors = true);
+
 var app = builder.Build();
 
 await InitializedAdminUser(app.Services);
@@ -65,6 +68,7 @@ app.MapRazorComponents<App>()
 
 // Add additional endpoints required by the Identity /Account Razor components.
 app.MapAdditionalIdentityEndpoints();
+
 
 app.Run();
 
