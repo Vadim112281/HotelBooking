@@ -1,0 +1,63 @@
+﻿@page "/manage-room-type/new"
+
+
+
+<div class="container">
+    <h1>Create Room Type</h1>
+    <hr />
+    <EditForm Model="Model" Enhance FormName="create-room-type" OnValidSubmit="SaveRoomTypeAsync">
+        <DataAnnotationsValidator />
+        <div class="row">
+             <div class="col-sm-6">
+                 <div class="mb-3">
+                     <label class="form-label">Name: </label>
+                     <InputText @bind-Value="Model.Name" class="form-control" placeholder="Room type name" />
+                     <ValidationMessage For="() => Model.Name" class="text-danger" />
+                 </div>
+             </div>
+
+             <div class="col-sm-6">
+                 <div class="mb-3">
+                     <label class="form-label">Image: </label>
+                     <InputFile @bind-Value="Model.ImageFile" class="form-control" />
+                     <ValidationMessage For="() => Model.ImageFile" class="text-danger" />
+                 </div>
+             </div>
+
+             <div class="col-sm-6">
+                 <div class="mb-3">
+                     <label class="form-label">Price: </label>
+                     <InputNumber @bind-Value="Model.Price" class="form-control" placeholder="Price" />
+                     <ValidationMessage For="() => Model.ImageFile" class="text-danger" />
+                 </div>
+                 <div class="mb-3">
+                     <label class="form-label">Price: </label>
+                     <InputNumber @bind-Value="Model.MaxAdults" class="form-control" placeholder="Max Adults" />
+                     <ValidationMessage For="() => Model.MaxAdults" class="text-danger" />
+                 </div>
+                 <div class="mb-3">
+                     <label class="form-label">Price: </label>
+                     <InputNumber @bind-Value="Model.MaxChildren" class="form-control" placeholder="MaxChildren" />
+                     <ValidationMessage For="() => Model.MaxChildren" class="text-danger" />
+                 </div>
+                 <div class="col-sm-6">
+                     <div class="mb-3">
+                         <label class="form-label">Description: </label>
+                         <InputTextArea @bind-Value="Model.Description" class="form-control" placeholder="Description" rows="5" />
+                         <ValidationMessage For="() => Model.Description" class="text-danger" />
+                     </div>
+                 </div>
+             </div>
+        </div>
+    </EditForm>
+</div>
+
+ @code {
+    [SupplyParameterFromForm]
+    private RoomTypeCreateModel Model { get; set; } = new();
+
+    private async Task SaveRoomTypeAsync()
+    {
+        
+    }
+}

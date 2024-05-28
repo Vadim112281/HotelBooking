@@ -5,13 +5,14 @@ namespace BookingHotel.Models
 {
     public class RoomTypeCreateModel
     {
-        public int Id { get; set; }
 
         [Required, MaxLength(100)]
         public string Name { get; set; }
 
-        [Required, MaxLength(100)]
+        [MaxLength(100)]
         public string Image { get; set; }
+
+        public IFormFile ImageFile { get; set; }
 
         [Required, Range(1, double.MaxValue)]
         public decimal Price { get; set; }

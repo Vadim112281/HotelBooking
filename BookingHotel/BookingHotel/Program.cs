@@ -38,6 +38,7 @@ builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSe
 
 builder.Services.AddTransient<SeedService>();
 builder.Services.AddTransient<IAmenitiesService, AmenitiesService>();
+builder.Services.AddTransient<IRoomTypeService, RoomTypeService>();
 
 builder.Services.AddServerSideBlazor()
        .AddCircuitOptions(options => options.DetailedErrors = true);
