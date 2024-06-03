@@ -8,7 +8,7 @@ namespace BookingHotel.Services
 {
     public interface IRoomTypeService
     {
-        Task<string?> CreateRoomTypeAsync(RoomTypeCreateModel model, string userId);
+        Task<bool?> CreateRoomTypeAsync(RoomTypeCreateModel model, string userId);
     }
 
     public class RoomTypeService : IRoomTypeService
@@ -20,11 +20,12 @@ namespace BookingHotel.Services
             _context = context;
         }
 
-        public async Task<string?> CreateRoomTypeAsync(RoomTypeCreateModel model, string userId)
+        public async Task<bool?> CreateRoomTypeAsync(RoomTypeCreateModel model, string userId)
         {
             if (await _context.RoomTypes.AnyAsync(x => x.Name == model.Name))
             {
-                return $"Room type with the same name {model.Name} already exists";
+                //return $"Room type with the same name {model.Name} already exists";
+                return false;
             }
 
             var roomType = new RoomType
@@ -55,7 +56,8 @@ namespace BookingHotel.Services
                 await _context.SaveChangesAsync();
             }
 
-            return roomType.Id.ToString();
+            //return roomType.Id.ToString();
+            return true;
         }
     }
 }

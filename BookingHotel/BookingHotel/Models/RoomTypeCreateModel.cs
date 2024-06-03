@@ -12,7 +12,6 @@ namespace BookingHotel.Models
         [MaxLength(100)]
         public string Image { get; set; }
 
-        public IFormFile ImageFile { get; set; }
 
         [Required, Range(1, double.MaxValue)]
         public decimal Price { get; set; }
@@ -32,8 +31,11 @@ namespace BookingHotel.Models
 
         public class RoomTypeAmenityCreateModel
         {
+            public RoomTypeAmenityCreateModel(int id, int? unit) => (Id, Unit) = (id, unit);
+
             public int Id { get; set; }
             public int? Unit { get; set; }
         }
+
     }
 }
