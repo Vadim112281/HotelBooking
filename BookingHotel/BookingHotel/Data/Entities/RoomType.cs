@@ -24,18 +24,18 @@ namespace BookingHotel.Data.Entities
         public int MaxChildren { get; set; }
 
         public bool IsActive { get; set; }
-        public DateTime AddedOn { get; set; }
+        public DateTime? AddedOn { get; set; }
 
         [Required]
-        public string AddedBy { get; set; }
+        public string? AddedBy { get; set; }
         public DateTime? LastUpdatedOn { get; set; }
         public string? LastUpdatedby { get; set; }
 
         [ForeignKey(nameof(AddedBy))]
-        public virtual ApplicationUser AddedByUser { get; set; }
+        public virtual ApplicationUser? AddedByUser { get; set; }
 
-        public virtual ICollection<RoomTypeAmenity> Amenities { get; set; }
-        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual ICollection<RoomTypeAmenity>? Amenities { get; set; }
+        public virtual ICollection<Room>? Rooms { get; set; }
     }
 
 }

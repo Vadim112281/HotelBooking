@@ -28,6 +28,10 @@ namespace BookingHotel.Data
                 .HasMany(x => x.Rooms)
                 .WithOne(x => x.RoomType)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Room>()
+                .HasIndex(x => x.RoomTypeId)
+                .IsUnique();
         }
     }
 }

@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BookingHotel.Models
 {
-    public class RoomTypeCreateModel
+    public class RoomTypeSaveModel
     {
-
+        public int Id { get; set; }
         [Required, MaxLength(100)]
         public string Name { get; set; }
 
@@ -27,11 +27,11 @@ namespace BookingHotel.Models
 
         public bool IsActive { get; set; }
 
-        public List<RoomTypeAmenityCreateModel> Amenities { get; set; } = new List<RoomTypeAmenityCreateModel>();
+        public List<RoomTypeAmenitySaveModel> Amenities { get; set; } = new List<RoomTypeAmenitySaveModel>();
 
-        public class RoomTypeAmenityCreateModel
+        public class RoomTypeAmenitySaveModel
         {
-            public RoomTypeAmenityCreateModel(int id, int? unit) => (Id, Unit) = (id, unit);
+            public RoomTypeAmenitySaveModel(int id, int? unit) => (Id, Unit) = (id, unit);
 
             public int Id { get; set; }
             public int? Unit { get; set; }

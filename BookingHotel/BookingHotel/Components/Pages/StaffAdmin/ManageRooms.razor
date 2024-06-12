@@ -1,0 +1,19 @@
+﻿@page "/staff-admin/manage-room-types/{roomTypeId:int}/rooms"
+
+@inject NavigationManager NavigationManager
+
+@code {
+    [Parameter]
+    public int? roomTypeId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(roomTypeId <= 0)
+        {
+            NavigationManager.NavigateTo("/staff-admin/manage-room-types", replace: true);
+            return;
+        }
+
+
+    }
+}

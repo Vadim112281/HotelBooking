@@ -170,6 +170,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Layout/AdminLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcQWRtaW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Layout/InnerPageLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcSW5uZXJQYWdlTGF5b3V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -214,12 +218,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTdGFmZkFkbWluXE1hbmFnZUFtZW5pdGllcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Pages/StaffAdmin/ManageRooms.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTdGFmZkFkbWluXE1hbmFnZVJvb21zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Pages/StaffAdmin/ManageRoomTypes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTdGFmZkFkbWluXE1hbmFnZVJvb21UeXBlcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Pages/StaffAdmin/SaveRoomType.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTdGFmZkFkbWluXFNhdmVSb29tVHlwZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Pages/StaffAdmin/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTdGFmZkFkbWluXF9JbXBvcnRzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Pages/Weather.razor]
