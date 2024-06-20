@@ -1,10 +1,120 @@
 ﻿@page "/staff-admin/manage-room-types/{roomTypeId:int}/rooms"
 
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+
 @inject NavigationManager NavigationManager
+@inject IRoomTypeService RoomTypeService
+@inject IJSRuntime JsRuntime
+
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Manage Rooms <small>[@Name]</small> </h1>
+        <button
+            type="button" class="btn btn-sm btn-primary" 
+            @onclick="OpenCreateRoomModel">
+            Add New Room
+        </button>
+    </div>
+    <hr /> 
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Room Number</th>
+                    <th>Is Available</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(_rooms.Count == 0)
+                {
+                    <tr>
+                        <td colspan="3">
+                            <h4 class="text-danger">No rooms found</h4>
+                        </td>
+                    </tr>
+                }
+                @foreach(var room in _rooms)
+                {
+                    <tr>
+                        <td>@room.RoomNumber</td>
+                        <td>
+                            <label>
+                                @if (room.IsAvailable)
+                                {
+                                    <input type="checkbox" @onchange="() => HandleIsAvailableChange(room)" />
+                                    <span class="text-success">Yes</span>
+                                }
+                                else
+                                {
+                                    <input type="checkbox" checked @onchange="() => HandleIsAvailableChange(room)" />
+                                    <span class="text-danger">No</span>
+                                }
+                            </label>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-danger" @onclick="() => DeleteRoomAsync(room.Id)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<dialog id="@DialogId" style="min-width: 300px">
+    <div class="d-flex justify-content-between align-items-center" >
+        <h4 class="m-0">Create Room</h4>
+        <button 
+            class="btn btn-danger btn-sm" 
+            @onclick="CloseRoomModel">
+            X
+        </button>
+    </div>
+    <hr />
+    <EditForm Model="_createRoomModel" OnValidSubmit="CreateRoomAsync">
+        <DataAnnotationsValidator />
+        <div class="mb-3">
+            <label class="form-label">Room Number: </label>
+            <InputText @bind-Value="_createRoomModel.RoomNumber" class="form-control form-control-sm" placeholder="Enter room number" />
+            <ValidationMessage For="() => _createRoomModel.RoomNumber" class="text-danger"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">
+                <InputCheckbox @bind-Value="_createRoomModel.IsAvailable" />
+                Is Available?
+            </label>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-sm btn-primary">Create Room</button>
+        </div>
+    </EditForm>
+</dialog>
+
+<style>
+    ::backdrop {
+        background-color: rgba(224, 145, 20, 0.5);
+    }
+</style>
 
 @code {
     [Parameter]
-    public int? roomTypeId { get; set; }
+    public int roomTypeId { get; set; }
+
+    private int _roomTypeId = 0;
+
+    [SupplyParameterFromQuery]
+    public string Name { get; set; }
+
+    private const string DialogId = "create-room-dialog";
+
+    private List<Room> _rooms = new List<Room>();
+
+    private Room _createRoomModel = new();
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -13,7 +123,44 @@
             NavigationManager.NavigateTo("/staff-admin/manage-room-types", replace: true);
             return;
         }
+        _roomTypeId = roomTypeId;
+        _rooms = await RoomTypeService.GetRoomAsync(_roomTypeId);
+    }
 
+    private async Task CreateRoomAsync()
+    {
+        _createRoomModel.RoomTypeId = _roomTypeId;
+        var result = await RoomTypeService.SaveRoomAsync(_createRoomModel);
 
+        if(result.IsSuccess)
+        {
+            _rooms = [.. _rooms, result.Data];
+            _createRoomModel = new();
+            await CloseRoomModel();
+        }
+    }
+
+    private async Task CloseRoomModel() => await JsRuntime.InvokeVoidAsync("window.closeModal", DialogId);
+    private async Task OpenCreateRoomModel() => await JsRuntime.InvokeVoidAsync("window.showModal", DialogId);
+
+    private async Task HandleIsAvailableChange(Room room)
+    {
+        room.IsAvailable = !room.IsAvailable;
+
+        var result = await RoomTypeService.SaveRoomAsync(room);
+        if (!result.IsSuccess)
+        {
+            room.IsAvailable = !room.IsAvailable;
+        }
+    }
+
+    private async Task DeleteRoomAsync(int id)
+    {
+        var result = await RoomTypeService.DeleteRoomAsync(id);
+
+        if(result == "true")
+        {
+            _rooms = _rooms.Where(x => x.Id != id).ToList();
+        }
     }
 }

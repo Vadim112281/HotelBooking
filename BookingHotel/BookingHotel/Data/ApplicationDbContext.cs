@@ -1,6 +1,7 @@
 using BookingHotel.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace BookingHotel.Data
 {
@@ -31,7 +32,8 @@ namespace BookingHotel.Data
 
             builder.Entity<Room>()
                 .HasIndex(x => x.RoomTypeId)
-                .IsUnique();
+            .IsUnique(false);
+
         }
     }
 }

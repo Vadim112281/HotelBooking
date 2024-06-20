@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\images\\room-types\\room-type-img-2bdd314a-8a18-4c44-94d0-6dff25242a63.png"
     },
     {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\images\\room-types\\room-type-img-33594f92-7efa-4991-a5ba-c284aa53abe9.jpg",
+      "PackagePath": "staticwebassets\\images\\room-types\\room-type-img-33594f92-7efa-4991-a5ba-c284aa53abe9.jpg"
+    },
+    {
       "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\images\\room-types\\room-type-img-33f1bfc9-9d31-4bfd-b064-82f22f27cf39.png",
       "PackagePath": "staticwebassets\\images\\room-types\\room-type-img-33f1bfc9-9d31-4bfd-b064-82f22f27cf39.png"
     },
@@ -59,6 +63,10 @@
     {
       "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\images\\room-types\\room-type-img-6b74fea4-2dad-4c1c-a30f-d6c5172fe7de.jpg",
       "PackagePath": "staticwebassets\\images\\room-types\\room-type-img-6b74fea4-2dad-4c1c-a30f-d6c5172fe7de.jpg"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\images\\room-types\\room-type-img-70bf3c63-4e4a-48ac-9a2b-50c9a806e978.jpg",
+      "PackagePath": "staticwebassets\\images\\room-types\\room-type-img-70bf3c63-4e4a-48ac-9a2b-50c9a806e978.jpg"
     },
     {
       "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\images\\room-types\\room-type-img-82568df5-47e9-4910-b3e4-fa8f24ab42fc.png",
@@ -79,6 +87,10 @@
     {
       "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\images\\room-types\\room-type-img-b3bdeb0b-4c98-493f-a00f-dad21ba8d3c5.jpg",
       "PackagePath": "staticwebassets\\images\\room-types\\room-type-img-b3bdeb0b-4c98-493f-a00f-dad21ba8d3c5.jpg"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\images\\room-types\\room-type-img-fdd4122c-0a7d-415c-aeef-4beeb1c10d02.png",
+      "PackagePath": "staticwebassets\\images\\room-types\\room-type-img-fdd4122c-0a7d-415c-aeef-4beeb1c10d02.png"
     },
     {
       "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\img\\about-1.jpg",
@@ -151,6 +163,10 @@
     {
       "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\img\\video.jpg",
       "PackagePath": "staticwebassets\\img\\video.jpg"
+    },
+    {
+      "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\js\\common.js",
+      "PackagePath": "staticwebassets\\js\\common.js"
     },
     {
       "Id": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\js\\main.js",

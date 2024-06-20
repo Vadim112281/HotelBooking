@@ -200,6 +200,9 @@ namespace BookingHotel.Migrations
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("RoomNumber")
                         .IsRequired()
                         .HasMaxLength(25)

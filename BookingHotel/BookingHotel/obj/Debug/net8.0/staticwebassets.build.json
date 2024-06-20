@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jBcm2HUaGT7EVhEKJABbJVt9+LbIW76sw5ciPFHQKsM=",
+  "Hash": "u7rJoi8yocpmGWijDyHWHfWApq72nmmCyX1hgsP1gcI=",
   "Source": "BookingHotel",
   "BasePath": "_content/BookingHotel",
   "Mode": "Default",
@@ -264,6 +264,25 @@
       "OriginalItemSpec": "wwwroot\\images\\room-types\\room-type-img-2bdd314a-8a18-4c44-94d0-6dff25242a63.png"
     },
     {
+      "Identity": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\images\\room-types\\room-type-img-33594f92-7efa-4991-a5ba-c284aa53abe9.jpg",
+      "SourceId": "BookingHotel",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\",
+      "BasePath": "_content/BookingHotel",
+      "RelativePath": "images/room-types/room-type-img-33594f92-7efa-4991-a5ba-c284aa53abe9.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\room-types\\room-type-img-33594f92-7efa-4991-a5ba-c284aa53abe9.jpg"
+    },
+    {
       "Identity": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\images\\room-types\\room-type-img-33f1bfc9-9d31-4bfd-b064-82f22f27cf39.png",
       "SourceId": "BookingHotel",
       "SourceType": "Discovered",
@@ -319,6 +338,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\room-types\\room-type-img-6b74fea4-2dad-4c1c-a30f-d6c5172fe7de.jpg"
+    },
+    {
+      "Identity": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\images\\room-types\\room-type-img-70bf3c63-4e4a-48ac-9a2b-50c9a806e978.jpg",
+      "SourceId": "BookingHotel",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\",
+      "BasePath": "_content/BookingHotel",
+      "RelativePath": "images/room-types/room-type-img-70bf3c63-4e4a-48ac-9a2b-50c9a806e978.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\room-types\\room-type-img-70bf3c63-4e4a-48ac-9a2b-50c9a806e978.jpg"
     },
     {
       "Identity": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\images\\room-types\\room-type-img-82568df5-47e9-4910-b3e4-fa8f24ab42fc.png",
@@ -414,6 +452,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\room-types\\room-type-img-b3bdeb0b-4c98-493f-a00f-dad21ba8d3c5.jpg"
+    },
+    {
+      "Identity": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\images\\room-types\\room-type-img-fdd4122c-0a7d-415c-aeef-4beeb1c10d02.png",
+      "SourceId": "BookingHotel",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\",
+      "BasePath": "_content/BookingHotel",
+      "RelativePath": "images/room-types/room-type-img-fdd4122c-0a7d-415c-aeef-4beeb1c10d02.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\room-types\\room-type-img-fdd4122c-0a7d-415c-aeef-4beeb1c10d02.png"
     },
     {
       "Identity": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\img\\about-1.jpg",
@@ -756,6 +813,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\video.jpg"
+    },
+    {
+      "Identity": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\js\\common.js",
+      "SourceId": "BookingHotel",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\",
+      "BasePath": "_content/BookingHotel",
+      "RelativePath": "js/common.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\common.js"
     },
     {
       "Identity": "D:\\MyProjectsGITHUB\\HotelGitHub\\HotelBooking\\BookingHotel\\BookingHotel\\wwwroot\\js\\main.js",

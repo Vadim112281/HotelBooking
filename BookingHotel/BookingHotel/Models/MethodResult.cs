@@ -1,5 +1,6 @@
 ﻿namespace BookingHotel.Models
 {
+
     public record MethodResult<TData>(bool IsSuccess, string? ErrorMessage, TData Data)
     {
         public static MethodResult<TData> Success(TData data) => new(true, null, data);

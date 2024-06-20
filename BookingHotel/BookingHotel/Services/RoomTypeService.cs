@@ -16,6 +16,8 @@ namespace BookingHotel.Services
         Task<RoomTypeSaveModel?> GetRoomTypeById(int id);
         Task<RoomType?> UpdateRoomTypeAsync(RoomType roomType, int id);
         Task<List<Room>> GetRoomAsync(int roomTypeId);
+        Task<MethodResult<Room>> SaveRoomAsync(Room room);
+        Task<string> DeleteRoomAsync(int roomId);
     }
 
     public class RoomTypeService : IRoomTypeService
@@ -190,27 +192,54 @@ namespace BookingHotel.Services
         public async Task<List<Room>> GetRoomAsync(int roomTypeId)
         {
             return await _context.Rooms
-                                .Where(x => x.RoomTypeId == roomTypeId)
+                                .Where(x => x.RoomTypeId == roomTypeId && !x.IsDeleted)
                                 .ToListAsync(); ;
 
         }
 
         public async Task<MethodResult<Room>> SaveRoomAsync(Room room)
         {
-            if(room.Id == 0)
+            try
             {
-                // Creating
-                _context.Rooms.Add(room);
-            }
-            else
-            {
-                // Updating
-                var dbRoom = await _context.Rooms.FirstOrDefaultAsync(x => x.Id == room.Id);
-                if(dbRoom is null)
+                if (room.Id == 0)
                 {
-                    return "Invalid request";
+                    // Creating
+                    await _context.Rooms.AddAsync(room);
                 }
+                else
+                {
+                    // Updating
+                    var dbRoom = await _context.Rooms
+                                        .AsTracking()
+                                        .FirstOrDefaultAsync(x => x.Id == room.Id && !x.IsDeleted);
+                    if (dbRoom is null)
+                    {
+                        return "Invalid request";
+                    }
+                    dbRoom.IsAvailable = room.IsAvailable;
+                }
+                await _context.SaveChangesAsync();
             }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+            return room;
+        }
+
+        public async Task<string> DeleteRoomAsync(int roomId)
+        {
+            var dbRoom = await _context.Rooms
+                               .AsTracking()
+                               .FirstOrDefaultAsync(x => x.Id == roomId);
+            if(dbRoom is null)
+            {
+                return "Invalid request";
+            }
+            dbRoom.IsDeleted = true;
+            await _context.SaveChangesAsync();
+
+            return "true";
         }
     }
 }
