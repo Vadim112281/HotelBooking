@@ -204,6 +204,10 @@ namespace BookingHotel.Services
                 if (room.Id == 0)
                 {
                     // Creating
+                    if(await _context.Rooms.AnyAsync(x => x.RoomNumber == room.RoomNumber))
+                    {
+                        return "Room number exists already";
+                    }
                     await _context.Rooms.AddAsync(room);
                 }
                 else
@@ -222,7 +226,7 @@ namespace BookingHotel.Services
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                return ex.InnerException?.Message ?? ex.Message;
             }
             return room;
         }
@@ -237,6 +241,7 @@ namespace BookingHotel.Services
                 return "Invalid request";
             }
             dbRoom.IsDeleted = true;
+            _context.Rooms.Remove(dbRoom);
             await _context.SaveChangesAsync();
 
             return "true";

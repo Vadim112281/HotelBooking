@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Components.QuickGrid
+
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+
+@inject IUserService UserSerivce
+
+<QuickGrid ItemsProvider="_usersProvider" Pagination="_pagination" class="table table-striped">
+    <PropertyColumn Property="x => x.id" />
+    <PropertyColumn Property="x => x.Name" />
+    <PropertyColumn Property="x => x.RoleName" />
+    <PropertyColumn Property="x => x.Email" />
+    <PropertyColumn Property="x => x.ContactNumber" />
+    @if(Role != RoleType.Guest)
+    {
+        <PropertyColumn Property="x => x.Designation" />
+        <TemplateColumn>
+            <a href="admin/manage-staff/@context.id/edit" class="btn btn-sm btn-primary">
+                <i class="fa fa-edit"></i>
+            </a>
+        </TemplateColumn>
+
+    }
+</QuickGrid>
+<Paginator State= "_pagination" />
+
+@code {
+
+    [Parameter, EditorRequired]
+    public RoleType Role { get; set; }
+
+    //private List<UserDisplayModel> _users = new List<UserDisplayModel>();
+
+    private const int PageSize = 2;
+    private GridItemsProvider<UserDisplayModel> _usersProvider;
+
+    private PaginationState _pagination = new() { ItemsPerPage = PageSize };
+
+    protected override void OnInitialized()
+    {
+        _usersProvider = UsersProviderAsync;
+    }
+
+    private async ValueTask<GridItemsProviderResult<UserDisplayModel>> UsersProviderAsync(GridItemsProviderRequest<UserDisplayModel> request)
+    {
+        var pagedResult = await UserSerivce.GetUsersAsync(request.StartIndex, request.Count ?? PageSize, Role);
+        return GridItemsProviderResult.From(pagedResult.Records, pagedResult.TotalCount);
+
+    }
+}

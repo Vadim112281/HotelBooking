@@ -1,0 +1,33 @@
+﻿@page "/admin/manage-staff/new"
+@page "/admin/manage-staff/{Id}/edit"
+
+@using BookingHotel.Components.Account.Shared
+
+@inject NavigationManager NavigationManager
+
+<div class="container">
+    <div class="d-flex align-items-center">
+        <h1>
+            <NavLink href="admin/manage-staff" class="me-2 btn btn-sm btn-default">
+                <i class="fa fa-arrow-left"></i>
+            </NavLink>
+            Create Stuff
+        </h1>
+    </div>
+    <hr />
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-7">
+            <CreateUserForm RoleName="@RoleType.Staff.ToString()" ShowLoginLink="false" ShowSubHeading="false"
+                            SubmitButtonText="Create Staff Member" OnSuccess="HandleRegisterSuccess" />
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private void HandleRegisterSuccess() => NavigationManager.NavigateTo("admin/manage-staff");
+
+}
+ 

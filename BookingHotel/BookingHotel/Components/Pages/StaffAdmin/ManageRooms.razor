@@ -9,7 +9,12 @@
 
 <div class="container">
     <div class="d-flex justify-content-between align-items-center">
-        <h1>Manage Rooms <small>[@Name]</small> </h1>
+        <h1>
+            <NavLink href="staff-admin/manage-room-types" class="me-2 btn btn-sm btn-default">
+                <i class="fa fa-arrow-left"></i>
+            </NavLink>
+            Manage Rooms <small>[@Name]</small>
+        </h1>
         <button
             type="button" class="btn btn-sm btn-primary" 
             @onclick="OpenCreateRoomModel">
@@ -137,7 +142,10 @@
             _rooms = [.. _rooms, result.Data];
             _createRoomModel = new();
             await CloseRoomModel();
+            return;
         }
+        await JsRuntime.InvokeVoidAsync("window.alert", result.ErrorMessage ?? "Error in creating room");
+
     }
 
     private async Task CloseRoomModel() => await JsRuntime.InvokeVoidAsync("window.closeModal", DialogId);
@@ -151,7 +159,9 @@
         if (!result.IsSuccess)
         {
             room.IsAvailable = !room.IsAvailable;
+            return;
         }
+        // await JsRuntime.InvokeVoidAsync("window.alert", result.ErrorMessage ?? "Error in changing room availability");
     }
 
     private async Task DeleteRoomAsync(int id)
@@ -162,5 +172,7 @@
         {
             _rooms = _rooms.Where(x => x.Id != id).ToList();
         }
+        // await JsRuntime.InvokeVoidAsync("window.alert", result = "Invalid request" ?? "Error in deleting room");
+
     }
 }

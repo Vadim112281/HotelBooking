@@ -136,3 +136,13 @@ D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\obj\Debug
 D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\obj\Debug\net8.0\BookingHotel.pdb
 D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\obj\Debug\net8.0\BookingHotel.genruntimeconfig.cache
 D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\obj\Debug\net8.0\ref\BookingHotel.dll
+D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
+D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\bin\Debug\net8.0\Microsoft.AspNetCore.Components.dll
+D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Forms.dll
+D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\bin\Debug\net8.0\Microsoft.AspNetCore.Components.QuickGrid.dll
+D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Web.dll
+D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
+D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\MyProjectsGITHUB\HotelGitHub\HotelBooking\BookingHotel\BookingHotel\bin\Debug\net8.0\Microsoft.JSInterop.dll

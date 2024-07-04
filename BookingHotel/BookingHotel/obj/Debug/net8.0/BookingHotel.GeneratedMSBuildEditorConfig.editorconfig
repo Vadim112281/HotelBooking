@@ -142,6 +142,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxBY2NvdW50TGF5b3V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Account/Shared/CreateUserForm.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxDcmVhdGVVc2VyRm9ybS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Account/Shared/ExternalLoginPicker.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBY2NvdW50XFNoYXJlZFxFeHRlcm5hbExvZ2luUGlja2VyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -180,6 +184,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Pages/About.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBYm91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Pages/Admin/ManageStaff.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZG1pblxNYW5hZ2VTdGFmZi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Pages/Admin/SaveStaff.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZG1pblxTYXZlU3RhZmYucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Pages/Admin/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZG1pblxfSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Pages/Auth.razor]
@@ -280,6 +296,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Shared/Testimonials.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTaGFyZWRcVGVzdGltb25pYWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Shared/UsersList.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTaGFyZWRcVXNlcnNMaXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/MyProjectsGITHUB/HotelGitHub/HotelBooking/BookingHotel/BookingHotel/Components/Shared/Video.razor]
