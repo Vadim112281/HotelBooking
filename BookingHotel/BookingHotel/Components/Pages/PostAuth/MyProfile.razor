@@ -1,0 +1,33 @@
+﻿@page "/my-profile"
+@using System.Security.Claims
+
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthStateProvider
+
+
+<div class="container">
+    <h1>My Profile</h1>
+    <hr />
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-7">
+            <EditProfileForm UserId="@Id" Role="@RoleType.Staff" OnSuccess="HandleRegisterSuccess" />
+        </div>
+    </div>
+</div>
+
+@code {
+    private string _userId;
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        if (authState is null || authState.User.Identity is null || authState.User.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo("/");
+            return;
+        }
+        _userId = authState.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier);
+    }
+
+    private void HandleRegisterSuccess() => NavigationManager.NavigateTo("admin/manage-staff");
+
+}

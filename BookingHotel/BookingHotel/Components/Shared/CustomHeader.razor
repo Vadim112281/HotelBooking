@@ -61,7 +61,7 @@
                                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">@* @context.User.FindFirst(AppConstants.CustomClaimTypes.FullName)!.Value *@ Profile</a>
                                     <div class="dropdown-menu rounded-0 m-0">
 
-                                        <NavLink href="booking" class="dropdown-item">My Profile</NavLink>
+                                        <NavLink href="my-profile" class="dropdown-item">My Profile</NavLink>
 
                                         <AuthorizeView Roles="@RoleType.Guest.ToString()" Context="guestContext">
                                             <NavLink href="booking" class="dropdown-item">My Booking</NavLink>
@@ -84,6 +84,8 @@
                                 <NavLink href="contact" class="nav-item nav-link"></NavLink>
                             </Authorized>
                         </AuthorizeView>
+
+                        <NavLink href="change-password" class="dropdown-item">Change Password</NavLink>
 
                     </div>
                     <AuthorizeView>

@@ -11,14 +11,21 @@
             <NavLink href="admin/manage-staff" class="me-2 btn btn-sm btn-default">
                 <i class="fa fa-arrow-left"></i>
             </NavLink>
-            Create Stuff
+            @(!string.IsNullOrWhiteSpace(Id) ? "Update" : "Create") Create Stuff
         </h1>
     </div>
     <hr />
     <div class="row d-flex justify-content-center">
         <div class="col-sm-7">
-            <CreateUserForm RoleName="@RoleType.Staff.ToString()" ShowLoginLink="false" ShowSubHeading="false"
-                            SubmitButtonText="Create Staff Member" OnSuccess="HandleRegisterSuccess" />
+            @if(string.IsNullOrWhiteSpace(Id))
+            {
+                <CreateUserForm Role="@RoleType.Staff" OnSuccess="HandleRegisterSuccess" />
+            }
+            else
+            {
+                <EditProfileForm UserId="@Id" Role="@RoleType.Staff" OnSuccess="HandleRegisterSuccess"/>
+            }
+
         </div>
     </div>
 </div>

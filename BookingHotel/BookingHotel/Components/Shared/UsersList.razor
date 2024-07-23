@@ -7,9 +7,9 @@
 <QuickGrid ItemsProvider="_usersProvider" Pagination="_pagination" class="table table-striped">
     <PropertyColumn Property="x => x.id" />
     <PropertyColumn Property="x => x.Name" />
-    <PropertyColumn Property="x => x.RoleName" />
+    <PropertyColumn Property="x => x.RoleName" Title="Role" />
     <PropertyColumn Property="x => x.Email" />
-    <PropertyColumn Property="x => x.ContactNumber" />
+    <PropertyColumn Property="x => x.ContactNumber" Title="Contact Number" />
     @if(Role != RoleType.Guest)
     {
         <PropertyColumn Property="x => x.Designation" />

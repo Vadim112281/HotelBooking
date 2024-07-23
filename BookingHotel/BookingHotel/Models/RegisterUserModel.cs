@@ -28,5 +28,8 @@ namespace BookingHotel.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; } = "";
+
+        [MaxLength(50)]
+        public string? Designation { get; set; }
     }
 }

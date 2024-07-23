@@ -1,0 +1,112 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using BookingHotel.Components.Shared
+
+@inject ILogger<EditProfileForm> Logger
+
+
+
+@inject IUserService UserService
+
+<StatusMessage Message="@_message" />
+<EditForm Model="Input" method="post" OnValidSubmit="EditProfileAsync" FormName="edit-profile">
+        <DataAnnotationsValidator />
+
+        <hr />
+        <input type="hidden" value="@Input.Id" name="Input.Id" />
+        <div class="row">
+           <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.FirstName" class="form-control" aria-required="true" placeholder="First Name" />
+                <label for="email">First Name</label>
+                <ValidationMessage For="() => Input.FirstName" class="text-danger" />
+              </div>
+           </div>
+
+           <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                 <InputText @bind-Value="Input.LastName" class="form-control" aria-required="true" placeholder="Last Name" />
+                 <label for="email">Last Name</label>
+                 <ValidationMessage For="() => Input.LastName" class="text-danger" />
+              </div>
+           </div>
+           <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                 <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                 <label for="email">Email</label>
+                 <ValidationMessage For="() => Input.Email" class="text-danger" />
+              </div>
+           </div>
+           <div class="col-sm-6">
+              <div class="form-floating mb-3">
+                 <InputText @bind-Value="Input.ContactNumber" class="form-control" aria-required="true" placeholder="Contact Number" />
+                 <label for="email">Contact Number</label>
+                  <ValidationMessage For="() => Input.ContactNumber" class="text-danger" />
+              </div>
+           </div>
+           @if(Role.HasValue && Role != RoleType.Guest)
+           {
+                <div class="col-sm-6">
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="Input.Designation" class="form-control" placeholder="Designation" />
+                        <label for="Designation">Designation</label>
+                        <ValidationMessage For="() => Input.Designation" class="text-danger" />
+                    </div>
+                </div>
+           }
+
+        </div>
+
+        <div>
+           <button type="submit" class="w-100 btn btn-lg btn-primary">Update Profile</button>
+        </div>
+
+</EditForm>
+
+
+@code {
+    [CascadingParameter]
+    public HttpContext HttpContext { get; set; }
+
+    [Parameter, EditorRequired]
+    public string UserId { get; set; }
+
+    [Parameter]
+    public RoleType? Role { get; set; }
+
+    [Parameter]
+    public EventCallback OnSuccess { get; set; }
+
+    [SupplyParameterFromForm]
+    private MyProfileModel Input { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(HttpMethods.IsGet(HttpContext.Request.Method))
+        {
+            var model = await UserService.GetProfileDetailsAsync(UserId);
+            if (model is null)
+            {
+                _message = "User does not exist";
+            }
+            Input = model;
+        }
+    }
+
+    private string? _message = null; // => identityErrors is null ? null : $"Error: {string.Join(", ", identityErrors.Select(error => error.Description))}";
+
+    public async Task EditProfileAsync(EditContext editContext)
+    {
+
+        var result = await UserService.UpdateProfileAsync(Input, Role);
+        if (result != "true")
+        {
+            _message = "Error in updating staff member.";
+            return;
+        }
+
+        Logger.LogInformation("Profile details updated.");
+
+        await OnSuccess.InvokeAsync();
+
+    }
+}
